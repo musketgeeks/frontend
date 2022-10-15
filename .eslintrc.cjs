@@ -9,6 +9,7 @@ const folders = fs
 const foldersPaths = ['@components', '@pages', '@shared', '@styles'];
 
 module.exports = {
+	root: true,
 	env: {
 		browser: true,
 		es2021: true
@@ -16,50 +17,48 @@ module.exports = {
 	extends: ['plugin:react/recommended', 'airbnb', 'next', 'prettier'],
 	plugins: ['react', 'prettier'],
 	rules: {
-		'react/react-in-jsx-scope': 'off',
-		'react/jsx-filename-extension': [
-			1,
-			{
-				extensions: ['.ts', '.tsx']
-			}
-		],
-		'react/jsx-props-no-spreading': 'off',
-		'react/jsx-sort-props': [
-			'error',
-			{
-				callbacksLast: true,
-				shorthandFirst: true,
-				reservedFirst: ['key'],
-				multiline: 'last'
-			}
-		],
-		'react/button-has-type': 'off',
-		'react/require-default-props': 'off',
-		'react/function-component-definition': 'off',
-		'jsx-a11y/anchor-is-valid': [
-			'error',
-			{
-				components: ['Link'],
-				specialLink: ['hrefLeft', 'hrefRight'],
-				aspects: ['invalidHref', 'preferButton']
-			}
-		],
 		'prettier/prettier': ['error', { usePrettierrc: true }]
-	},
-	settings: {
-		'import/resolver': {
-			node: {
-				extensions: ['.js', '.jsx', '.ts', '.tsx'],
-				moduleDirectory: ['node_modules', 'src/']
-			}
-		}
 	},
 	overrides: [
 		{
-			files: ['**/*.ts?(x)'],
-			parser: '@typescript-eslint/parser',
+			files: ['*.jsx'],
+			rules: {
+				'react/react-in-jsx-scope': 'off',
+				'react/jsx-curly-brace-presence': [
+					'warn',
+					{
+						props: 'always'
+					}
+				],
+				'react/jsx-sort-props': [
+					'error',
+					{
+						callbacksLast: true,
+						shorthandFirst: true,
+						reservedFirst: ['key'],
+						multiline: 'last'
+					}
+				],
+				'react/button-has-type': 'off',
+				'react/require-default-props': 'off',
+				'react/function-component-definition': 'off',
+				'jsx-a11y/anchor-is-valid': [
+					'error',
+					{
+						components: ['Link'],
+						specialLink: ['hrefLeft', 'hrefRight'],
+						aspects: ['invalidHref', 'preferButton']
+					}
+				],
+				'react/jsx-props-no-spreading': 'off'
+			}
+		},
+		{
+			files: ['*.ts', '*.tsx'],
 			extends: ['airbnb-typescript', 'airbnb-typescript-prettier'],
 			plugins: ['@typescript-eslint', 'simple-import-sort', 'import', 'unused-imports'],
+			excludedFiles: ['*.js', '*.cjs', '*.mjs'],
+			parser: '@typescript-eslint/parser',
 			parserOptions: {
 				ecmaFeatures: {
 					jsx: true
@@ -69,6 +68,40 @@ module.exports = {
 				project: './tsconfig.json'
 			},
 			rules: {
+				'react/jsx-filename-extension': [
+					1,
+					{
+						extensions: ['.ts', '.tsx']
+					}
+				],
+				'react/react-in-jsx-scope': 'off',
+				'react/jsx-curly-brace-presence': [
+					'warn',
+					{
+						props: 'always'
+					}
+				],
+				'react/jsx-sort-props': [
+					'error',
+					{
+						callbacksLast: true,
+						shorthandFirst: true,
+						reservedFirst: ['key'],
+						multiline: 'last'
+					}
+				],
+				'react/button-has-type': 'off',
+				'react/require-default-props': 'off',
+				'react/function-component-definition': 'off',
+				'jsx-a11y/anchor-is-valid': [
+					'error',
+					{
+						components: ['Link'],
+						specialLink: ['hrefLeft', 'hrefRight'],
+						aspects: ['invalidHref', 'preferButton']
+					}
+				],
+				'react/jsx-props-no-spreading': 'off',
 				'@typescript-eslint/naming-convention': [
 					'error',
 					{
@@ -100,6 +133,17 @@ module.exports = {
 					}
 				]
 			}
+		},
+		{
+			files: ['.eslintrc.cjs', 'commitlint.config.cjs', 'next.config.cjs'],
+			env: {
+				node: true
+			}
 		}
-	]
+	],
+	settings: {
+		react: {
+			version: 'detect'
+		}
+	}
 };
