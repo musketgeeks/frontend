@@ -3,7 +3,9 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"preapre": "husky install",
 		"dev": "next dev",
+		"prebuild": "rimraf .next",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint"
@@ -44,6 +46,9 @@
 		"*.{js,tsx,ts}": [
 			"prettier --write",
 			"eslint --fix"
+		],
+		"*.{md,html}": [
+			"prettier --write"
 		]
 	}
 }
