@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
 
 const folders = fs
@@ -14,13 +13,14 @@ module.exports = {
 		browser: true,
 		es2021: true
 	},
-	extends: ['plugin:react/recommended', 'airbnb', 'next', 'prettier'],
+	extends: ['plugin:react/recommended', 'airbnb', 'next', 'plugin:prettier/recommended'],
 	plugins: ['react', 'prettier'],
 	rules: {
 		'prettier/prettier': ['error', { usePrettierrc: true }]
 	},
 	overrides: [
 		{
+			// Rules for React (using JS)
 			files: ['*.jsx'],
 			rules: {
 				'react/react-in-jsx-scope': 'off',
@@ -54,6 +54,7 @@ module.exports = {
 			}
 		},
 		{
+			// Rules for TypeScript and React (using TS)
 			files: ['*.ts', '*.tsx'],
 			extends: ['airbnb-typescript', 'airbnb-typescript-prettier'],
 			plugins: ['@typescript-eslint', 'simple-import-sort', 'import', 'unused-imports'],
@@ -135,15 +136,11 @@ module.exports = {
 			}
 		},
 		{
+			// For config files
 			files: ['.eslintrc.cjs', 'commitlint.config.cjs', 'next.config.cjs'],
 			env: {
 				node: true
 			}
 		}
-	],
-	settings: {
-		react: {
-			version: 'detect'
-		}
-	}
+	]
 };
