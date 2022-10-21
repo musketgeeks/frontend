@@ -13,7 +13,7 @@ module.exports = {
 		browser: true,
 		es2021: true
 	},
-	extends: ['plugin:react/recommended', 'airbnb', 'next', 'plugin:prettier/recommended'],
+	extends: ['plugin:react/recommended', 'airbnb', 'next', 'prettier'],
 	plugins: ['react', 'prettier'],
 	rules: {
 		'prettier/prettier': ['error', { usePrettierrc: true }]
