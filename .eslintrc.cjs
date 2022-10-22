@@ -1,9 +1,9 @@
 const fs = require('fs');
 
 const folders = fs
-    .readdirSync('src', {withFileTypes: true})
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => !['styles'].includes(dirent.name) && dirent.name);
+	.readdirSync('src', { withFileTypes: true })
+	.filter((dirent) => dirent.isDirectory())
+	.map((dirent) => !['styles'].includes(dirent.name) && dirent.name);
 
 const foldersPaths = ['@components', '@pages', '@shared', '@styles'];
 
@@ -137,9 +137,19 @@ module.exports = {
 		},
 		{
 			// For config files
-			files: ['.eslintrc.cjs', 'commitlint.config.cjs', 'next.config.cjs'],
+			files: [
+				'.eslintrc.cjs',
+				'commitlint.config.cjs',
+				'next.config.cjs',
+				'prettier.config.cjs',
+				'*.cjs',
+				'*.mjs'
+			],
 			env: {
 				node: true
+			},
+			rules: {
+				'import/no-extraneous-dependencies': 'off'
 			}
 		}
 	]
