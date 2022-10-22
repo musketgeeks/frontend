@@ -1,9 +1,9 @@
 const fs = require('fs');
 
 const folders = fs
-	.readdirSync('src', { withFileTypes: true })
-	.filter((dirent) => dirent.isDirectory())
-	.map((dirent) => !['styles'].includes(dirent.name) && dirent.name);
+    .readdirSync('src', {withFileTypes: true})
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => !['styles'].includes(dirent.name) && dirent.name);
 
 const foldersPaths = ['@components', '@pages', '@shared', '@styles'];
 
